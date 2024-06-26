@@ -2,12 +2,13 @@ const prato = document.querySelectorAll('.prato')
 const bebida = document.querySelectorAll('.bebida')
 const sobremesa = document.querySelectorAll('.sobremesa')
 
-let pedidoprato = ""
-let valorprato = ""
-let pedidobebida = ""
-let valorbebida = ""
-let pedidosobremesa = ""
-let valorsobremesa = ""
+let pedidoprato = null
+let valorprato = null
+let pedidobebida = null
+let valorbebida = null
+let pedidosobremesa = null
+let valorsobremesa = null
+
 
 
 
@@ -25,8 +26,8 @@ function escolhePrato(elemento) {
 
     elemento.classList.remove('ativado')
     elemento.classList.remove('ok')
-    pedidoprato = ""
-    valorprato = ""
+    pedidoprato = null
+    valorprato = null
   } else {
     for (i = 0; i < prato.length; i++) {
       prato[i].classList.remove('ativado')
@@ -41,6 +42,7 @@ function escolhePrato(elemento) {
     valorprato = h2element.textContent
     console.log(pedidoprato, valorprato)
   }
+  verificapedido()
 }
 
 //bebida
@@ -58,8 +60,8 @@ function escolhebebida(elemento) {
 
     elemento.classList.remove('ativado')
     elemento.classList.remove('ok')
-    pedidobebida = ""
-    valorbebida = ""
+    pedidobebida = null
+    valorbebida = null
   } else {
     for (i = 0; i < bebida.length; i++) {
       bebida[i].classList.remove('ativado')
@@ -74,6 +76,7 @@ function escolhebebida(elemento) {
     valorbebida = h2element.textContent
     console.log(pedidobebida, valorbebida)
   }
+  verificapedido()
 }
 
 //sobremesa
@@ -91,8 +94,8 @@ function escolhesobremesa(elemento) {
 
     elemento.classList.remove('ativado')
     elemento.classList.remove('ok')
-    pedidosobremesa = ""
-    valorsobremesa = ""
+    pedidosobremesa = null
+    valorsobremesa = null
   } else {
     for (i = 0; i < sobremesa.length; i++) {
       sobremesa[i].classList.remove('ativado')
@@ -106,5 +109,24 @@ function escolhesobremesa(elemento) {
     pedidosobremesa = h1element.textContent
     valorsobremesa = h2element.textContent
     console.log(pedidosobremesa, valorsobremesa)
+  }
+  verificapedido()
+}
+
+function verificapedido() {
+  if (pedidoprato != null && valorprato != null && pedidobebida != null && valorbebida != null && pedidosobremesa != null && valorsobremesa != null) {
+    fecharpedido()
+  } else {
+    const msgbtn = document.querySelector('button p')
+    const corbtn = document.querySelector('button')
+    corbtn.classList.remove('bg-green')
+    msgbtn.innerHTML = "Selecione os 3 itens para fechar o pedido"
+  }
+  function fecharpedido() {
+    const msgbtn = document.querySelector('button p')
+    const corbtn = document.querySelector('button')
+    corbtn.classList.add('bg-green')
+    msgbtn.innerHTML = "Fechar pedido"
+
   }
 }

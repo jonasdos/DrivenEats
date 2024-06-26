@@ -158,6 +158,10 @@ footer button {
 
 }
 
+.bg-green {
+  background-color: rgba(50, 183, 47, 1);
+}
+
 footer button p {
   font-family: roboto;
   font-weight: 400;
