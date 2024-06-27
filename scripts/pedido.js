@@ -25,10 +25,6 @@ function escolhePrato(elemento) {
 
   if (elemento.classList.contains('ativado')) {
 
-    elemento.classList.remove('ativado')
-    elemento.classList.remove('ok')
-    pedidoprato = null
-    valorprato = null
   } else {
     for (i = 0; i < prato.length; i++) {
       prato[i].classList.remove('ativado')
@@ -59,10 +55,6 @@ function escolhebebida(elemento) {
 
   if (elemento.classList.contains('ativado')) {
 
-    elemento.classList.remove('ativado')
-    elemento.classList.remove('ok')
-    pedidobebida = null
-    valorbebida = null
   } else {
     for (i = 0; i < bebida.length; i++) {
       bebida[i].classList.remove('ativado')
@@ -93,10 +85,6 @@ function escolhesobremesa(elemento) {
 
   if (elemento.classList.contains('ativado')) {
 
-    elemento.classList.remove('ativado')
-    elemento.classList.remove('ok')
-    pedidosobremesa = null
-    valorsobremesa = null
   } else {
     for (i = 0; i < sobremesa.length; i++) {
       sobremesa[i].classList.remove('ativado')
@@ -119,7 +107,7 @@ function verificapedido() {
     fecharpedido()
   } else {
     const msgbtn = document.querySelector('button p')
-    const corbtn = document.querySelector('button')
+    const corbtn = document.querySelector('#btn1')
     corbtn.classList.remove('bg-green')
     corbtn.classList.remove('clicavel')
     msgbtn.innerHTML = "Selecione os 3 itens para fechar o pedido"
@@ -151,13 +139,12 @@ function exibepedido() {
   itens[3].textContent = valorprato
   itens[4].textContent = valorbebida
   itens[5].textContent = valorsobremesa
-  let vp = +(valorprato.replace("R$", '').replace(",", '.'))
-  let vb = +(valorbebida.replace("R$", '').replace(",", '.'))
-  let vs = +(valorsobremesa.replace("R$", '').replace(",", '.'))
-  let totalPedido = parseInt((vp + vb + vs), 10.00)
-  totalPedido = totalPedido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
+  let vp = parseFloat(valorprato.replace("R$", '').replace(",", '.'))
+  let vb = parseFloat(valorbebida.replace("R$", '').replace(",", '.'))
+  let vs = parseFloat(valorsobremesa.replace("R$", '').replace(",", '.'))
+  let totalPedido = (vp + vb + vs).toFixed(2)
   const eltotal = document.querySelector('#total')
-  eltotal.innerHTML = `R$ ${totalPedido}`
+  eltotal.innerHTML = `R$ ${totalPedido.replace(".", ",")}`
   aguardaWhatsapp()
 }
 
@@ -167,16 +154,16 @@ function aguardaWhatsapp() {
 
 }
 function enviaWhatsapp() {
-  let vp = +(valorprato.replace("R$", '').replace(",", '.'))
-  let vb = +(valorbebida.replace("R$", '').replace(",", '.'))
-  let vs = +(valorsobremesa.replace("R$", '').replace(",", '.'))
-  let totalPedido = parseInt((vp + vb + vs), 10.00)
+  let vp = parseFloat(valorprato.replace("R$", '').replace(",", '.'))
+  let vb = parseFloat(valorbebida.replace("R$", '').replace(",", '.'))
+  let vs = parseFloat(valorsobremesa.replace("R$", '').replace(",", '.'))
+  let totalPedido = (vp + vb + vs).toFixed(2)
   totalPedido = totalPedido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
   let msgwhatsapp = (`Olá, gostaria de fazer o pedido:%0A
   - Prato: ${pedidoprato}%0A
   - Bebida: ${pedidobebida}%0A
   - Sobremesa: ${pedidosobremesa}%0A
-  Total: R$ ${totalPedido}`)
+  Total: R$ ${totalPedido.replace(".", ",")}`)
   window.open(`https://wa.me/${5551985045145}?text=${msgwhatsapp}`, 'blank')
   location.reload();
 
