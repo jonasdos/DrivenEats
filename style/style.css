@@ -178,7 +178,9 @@ footer button p {
 
 .clicavel {
   cursor: pointer;
+  margin: 5px 0px;
 }
+
 
 .sobreposto {
   position: fixed;
@@ -190,6 +192,15 @@ footer button p {
   display: none;
   align-items: center;
   justify-content: space-around;
+  transition: 0.5s;
+}
+
+.al-esquerda {
+  text-align: left;
+}
+
+.al-direita {
+  text-align: right;
 }
 
 .resumoPedido {

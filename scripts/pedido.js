@@ -1,3 +1,4 @@
+console.log('Página reiniciada')
 const prato = document.querySelectorAll('.prato')
 const bebida = document.querySelectorAll('.bebida')
 const sobremesa = document.querySelectorAll('.sobremesa')
@@ -138,7 +139,50 @@ function aguardaclique(btn) {
   btn.addEventListener('click', exibepedido)
 }
 function exibepedido() {
+  let btn = document.querySelector('button')
+  btn.classList.add('clicavel')
   const comanda = document.querySelector('.sobreposto')
-  comanda.style.display = 'flex';
+  comanda.style.display = 'flex'
+  const p = document.querySelector('.itensPedido')
+  const itens = p.querySelectorAll('p')
+  itens[0].textContent = pedidoprato
+  itens[1].textContent = pedidobebida
+  itens[2].textContent = pedidosobremesa
+  itens[3].textContent = valorprato
+  itens[4].textContent = valorbebida
+  itens[5].textContent = valorsobremesa
+  let vp = +(valorprato.replace("R$", '').replace(",", '.'))
+  let vb = +(valorbebida.replace("R$", '').replace(",", '.'))
+  let vs = +(valorsobremesa.replace("R$", '').replace(",", '.'))
+  let totalPedido = parseInt((vp + vb + vs), 10.00)
+  totalPedido = totalPedido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
+  const eltotal = document.querySelector('#total')
+  eltotal.innerHTML = `R$ ${totalPedido}`
+  aguardaWhatsapp()
+}
 
+function aguardaWhatsapp() {
+  document.querySelector('#aceitarBtn').addEventListener('click', enviaWhatsapp)
+  document.querySelector('#recusarBtn').addEventListener('click', cancelaPedido)
+
+}
+function enviaWhatsapp() {
+  let vp = +(valorprato.replace("R$", '').replace(",", '.'))
+  let vb = +(valorbebida.replace("R$", '').replace(",", '.'))
+  let vs = +(valorsobremesa.replace("R$", '').replace(",", '.'))
+  let totalPedido = parseInt((vp + vb + vs), 10.00)
+  totalPedido = totalPedido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
+  let msgwhatsapp = (`Olá, gostaria de fazer o pedido:%0A
+  - Prato: ${pedidoprato}%0A
+  - Bebida: ${pedidobebida}%0A
+  - Sobremesa: ${pedidosobremesa}%0A
+  Total: R$ ${totalPedido}`)
+  window.open(`https://wa.me/${5551985045145}?text=${msgwhatsapp}`, 'blank')
+  location.reload();
+
+}
+function cancelaPedido() {
+  const comanda = document.querySelector('.sobreposto')
+  comanda.style.display = 'none'
+  console.log('cancela pedido')
 }
