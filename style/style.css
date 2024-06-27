@@ -160,6 +160,11 @@ footer button {
 
 .bg-green {
   background-color: rgba(50, 183, 47, 1);
+  transition: 0.5s;
+}
+
+.bg-green:hover {
+  width: 95%;
 }
 
 footer button p {
@@ -169,4 +174,71 @@ footer button p {
   width: 18ch;
   color: rgba(255, 255, 255, 1);
 
+}
+
+.clicavel {
+  cursor: pointer;
+}
+
+.sobreposto {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(238, 238, 238, 0.877);
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.resumoPedido {
+  background-color: rgba(80, 208, 116, 1);
+  padding: 25px 21px 0px 21px;
+  border-radius: 9px;
+  color: rgba(255, 255, 255, 1);
+  font-size: 22px;
+  line-height: 25.78px;
+  font-weight: 300;
+  width: 90%;
+
+  text-align: center;
+}
+
+.resumoPedido h2 {
+  height: 27px;
+  margin-bottom: 28px;
+  font-weight: 700;
+}
+
+.itensPedido {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.itensPedido p {
+  margin-bottom: 15px;
+  letter-spacing: 0.018rem;
+}
+
+.opcoes {
+  display: flex;
+  flex-direction: column;
+}
+
+.opcoes button {
+  border-radius: 100px;
+  border: none;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 25.78px;
+  height: 52px;
+  color: rgba(80, 208, 116, 1);
+}
+
+.opcoes button:nth-child(2) {
+  background-color: rgba(49, 183, 47, 0);
+  color: #FFFFFF;
+  font-size: 20px;
 }

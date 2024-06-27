@@ -13,7 +13,7 @@ let valorsobremesa = null
 
 
 for (i = 0; i < prato.length; i++) {
-  console.log(prato[i].classList)
+
   prato[i].classList.remove('ativado')
   prato[i].addEventListener('click', function (e) {
     escolhePrato(this)
@@ -40,14 +40,14 @@ function escolhePrato(elemento) {
     const h2element = elemento.querySelector('h2')
     pedidoprato = h1element.textContent
     valorprato = h2element.textContent
-    console.log(pedidoprato, valorprato)
+
   }
   verificapedido()
 }
 
 //bebida
 for (i = 0; i < bebida.length; i++) {
-  console.log(bebida[i].classList)
+
   bebida[i].classList.remove('ativado')
   bebida[i].addEventListener('click', function (e) {
     escolhebebida(this)
@@ -74,14 +74,14 @@ function escolhebebida(elemento) {
     const h2element = elemento.querySelector('h2')
     pedidobebida = h1element.textContent
     valorbebida = h2element.textContent
-    console.log(pedidobebida, valorbebida)
+
   }
   verificapedido()
 }
 
 //sobremesa
 for (i = 0; i < sobremesa.length; i++) {
-  console.log(sobremesa[i].classList)
+
   sobremesa[i].classList.remove('ativado')
   sobremesa[i].addEventListener('click', function (e) {
     escolhesobremesa(this)
@@ -108,7 +108,7 @@ function escolhesobremesa(elemento) {
     const h2element = elemento.querySelector('h2')
     pedidosobremesa = h1element.textContent
     valorsobremesa = h2element.textContent
-    console.log(pedidosobremesa, valorsobremesa)
+
   }
   verificapedido()
 }
@@ -120,13 +120,25 @@ function verificapedido() {
     const msgbtn = document.querySelector('button p')
     const corbtn = document.querySelector('button')
     corbtn.classList.remove('bg-green')
+    corbtn.classList.remove('clicavel')
     msgbtn.innerHTML = "Selecione os 3 itens para fechar o pedido"
   }
   function fecharpedido() {
-    const msgbtn = document.querySelector('button p')
-    const corbtn = document.querySelector('button')
+    const msgbtn = document.querySelector('footer button p')
+    const corbtn = document.querySelector('footer button')
     corbtn.classList.add('bg-green')
+    corbtn.classList.add('clicavel')
     msgbtn.innerHTML = "Fechar pedido"
+    aguardaclique(corbtn)
 
   }
+}
+
+function aguardaclique(btn) {
+  btn.addEventListener('click', exibepedido)
+}
+function exibepedido() {
+  const comanda = document.querySelector('.sobreposto')
+  comanda.style.display = 'flex';
+
 }
